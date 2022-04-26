@@ -37,7 +37,7 @@ app.get('/auth/login', (req, res) => {
     redirect_uri: spotify_redirect_uri,
     state: state
   })
-
+  console.log(auth_query_parameters.toString())
   res.redirect('https://accounts.spotify.com/authorize/?' + auth_query_parameters.toString());
 })
 
@@ -58,7 +58,6 @@ app.get('/auth/callback', (req, res) => {
     },
     json: true
   };
-
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
